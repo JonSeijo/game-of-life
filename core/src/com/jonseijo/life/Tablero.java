@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Tablero {
 
     private int tam;
-    private ArrayList<ArrayList<Boolean>> tablero;
+    private ArrayList<ArrayList<Cell>> tablero;
 
     public Tablero() {
         this(25);
@@ -17,11 +17,11 @@ public class Tablero {
         this.tam = tam;
 
         // Creo un tablero cuadrado lleno de Falses
-        this.tablero = new ArrayList<ArrayList<Boolean>>(this.tam);
+        this.tablero = new ArrayList<ArrayList<Cell>>(this.tam);
         for (int i = 0; i < this.tam; i++) {
-            ArrayList<Boolean> arrayInterno = new ArrayList<Boolean>(this.tam);
+            ArrayList<Cell> arrayInterno = new ArrayList<Cell>(this.tam);
             for (int j = 0; j < this.tam; j++) {
-                arrayInterno.add(Boolean.FALSE);
+                arrayInterno.add(new Cell(false));
             }
             this.tablero.add(arrayInterno);
         }
@@ -32,11 +32,11 @@ public class Tablero {
     }
 
     public void set(int x, int y, boolean value) {
-        this.tablero.get(x).set(y, Boolean.valueOf(value));
+        this.tablero.get(x).get(y).setAlive(value);
     }
 
     public boolean get(int x, int y) {
-        return this.tablero.get(x).get(y);
+        return this.tablero.get(x).get(y).isAlive();
     }
 
     public void dispose() {
