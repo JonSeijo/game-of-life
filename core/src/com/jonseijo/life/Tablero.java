@@ -60,9 +60,6 @@ public class Tablero {
         return (this.get(x, y)) ? 1 : 0;
     }
 
-    // @JONNO
-    // Estoy repitiendo codigo en vecinosmuertos y vecinosvivos
-
     public int vecinosVivos(int x, int y) {
         // @JONNO deberia tirar una excepcion
         if (x < 0 || x >= this.tam || y < 0 || y >= this.tam) {
@@ -82,23 +79,8 @@ public class Tablero {
     }
 
     public int vecinosMuertos(int x, int y) {
-        // @JONNO deberia tirar una excepcion
-        if (x < 0 || x >= this.tam || y < 0 || y >= this.tam) {
-            return 0;
-        }
-
-        // Reviso los 8 vecinos, (excluyo al cual le pregunto)
-        int muertos = 8;
-        for (int i = x - 1; i <= x + 1; i++) {
-            for (int j = y - 1; j <= y + 1; j++) {
-                if (i != x && j != y) {
-                    muertos -= this.getN(i, j);
-                }
-            }
-        }
-        return muertos;
+        return 8 - this.vecinosVivos(x, y);
     }
-
 
     public void dispose() {
 
