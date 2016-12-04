@@ -13,14 +13,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameLife extends ApplicationAdapter {
 
+    private AssetLoader assetLoader;
+
     private SpriteBatch batch;
-	private Texture texture;
     private Viewport viewport;
     private OrthographicCamera camera;
 
 	@Override
 	public void create () {
-	    this.texture = new Texture(Gdx.files.internal("cell_blue.png"));
+	    this.assetLoader = new AssetLoader();
+
         this.batch = new SpriteBatch();
         this.camera = new OrthographicCamera();
         this.viewport = new ExtendViewport(200, 300, this.camera);
@@ -39,7 +41,7 @@ public class GameLife extends ApplicationAdapter {
 
 		batch.begin();
 
-		batch.draw(texture, 0, 0);
+		batch.draw(assetLoader.cell_alive, 0, 0);
 
 		batch.end();
 	}
@@ -51,7 +53,7 @@ public class GameLife extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
+        assetLoader.dispose();
 		batch.dispose();
-		texture.dispose();
 	}
 }
