@@ -29,9 +29,17 @@ public class GameLife extends ApplicationAdapter {
 
         this.crearTablero(25);
 
-	    this.tablero.set(0, 0, true);
-	    this.tablero.set(1, 1, true);
-	    this.tablero.set(2, 2   , true);
+        /*
+        Glider:
+            0 1 1
+            1 0 1
+            0 0 1
+         */
+	    this.tablero.set(2, 0, true);
+        this.tablero.set(2, 1, true);
+        this.tablero.set(2, 2, true);
+        this.tablero.set(1, 2, true);
+	    this.tablero.set(0, 1, true);
 
         this.batch = new SpriteBatch();
         this.camera = new OrthographicCamera();
