@@ -35,16 +35,18 @@ public class Jon {
 
                 // Si esta viva..
                 if (tablero.get(i, j)) {
-                    if (vecinosVivos < 2 || vecinosVivos > 3) {
-                        this.temporal.set(i, j, false);
-                    } else if (vecinosVivos == 2 || vecinosVivos == 3) {
+                    if (vecinosVivos == 2 || vecinosVivos == 3) {
                         this.temporal.set(i, j, true);
+                    } else {
+                        this.temporal.set(i, j, false);
                     }
                 }
-                // Si esta muerta
+                // Si esta muerta..
                 else {
                     if (vecinosVivos == 3) {
                         this.temporal.set(i, j, true);
+                    } else {
+                        this.temporal.set(i, j, false);
                     }
                 }
 
