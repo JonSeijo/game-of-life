@@ -15,6 +15,8 @@ public class GameLife extends ApplicationAdapter {
 
     private AssetLoader assetLoader;
 
+    private Tablero tablero;
+
     private SpriteBatch batch;
     private Viewport viewport;
     private OrthographicCamera camera;
@@ -22,6 +24,7 @@ public class GameLife extends ApplicationAdapter {
 	@Override
 	public void create () {
 	    this.assetLoader = new AssetLoader();
+	    this.tablero = new Tablero(25);
 
         this.batch = new SpriteBatch();
         this.camera = new OrthographicCamera();
@@ -41,7 +44,7 @@ public class GameLife extends ApplicationAdapter {
 
 		batch.begin();
 
-		batch.draw(assetLoader.cell_alive, 0, 0);
+		this.tablero.render(batch);
 
 		batch.end();
 	}
