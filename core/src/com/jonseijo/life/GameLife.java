@@ -46,6 +46,8 @@ public class GameLife extends ApplicationAdapter {
         Gdx.input.setInputProcessor(new GameInputAdapter(this));
 	}
 
+    // @JONNO
+    // Quiza Jon deberia encargarse del tablero posta
 	public void crearTablero(int tam) {
         this.jon = new Jon(tam);
         this.tablero = new Tablero(tam);

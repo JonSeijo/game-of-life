@@ -4,9 +4,14 @@ import android.app.ActionBar;
 
 public class Jon {
 
+    // @JONNO
+    // Optimizacion, que this.temporal sea una simple matriz de booleanos, bitmap quiza
+    // No hay neccesidad de que contenga Cells
     private Tablero temporal;
+    private int tam;
 
     public Jon(int tam) {
+        this.tam = tam;
         this.temporal = new Tablero(tam);
     }
 
@@ -22,5 +27,40 @@ public class Jon {
     */
     public void simular(Tablero tablero) {
 
+        for (int i = 0; i < this.tam; i++) {
+            for (int j = 0; j < this.tam; j++) {
+
+                // (i, j) es mi celda actual
+                int vecinosVivos = tablero.vecinosVivos(i, j);
+
+                // Si esta viva..
+                if (tablero.get(i, j)) {
+                    if (vecinosVivos < 2 || vecinosVivos > 3) {
+                        this.temporal.set(i, j, false);
+                    } else if (vecinosVivos == 2 || vecinosVivos == 3) {
+                        this.temporal.set(i, j, true);
+                    }
+                }
+                // Si esta muerta
+                else {
+                    if (vecinosVivos == 3) {
+                        this.temporal.set(i, j, true);
+                    }
+                }
+
+            }
+        }
+
+        // @JONNO: Quiza deberia tirar una excepcion si este metodo no se llama
+        this.copiarEstados(tablero);
     }
+
+    private void copiarEstados(Tablero tablero) {
+        for (int i = 0; i < this.tam; i++) {
+            for (int j = 0; j < this.tam; j++) {
+                tablero.set(i, j, this.temporal.get(i, j));
+            }
+        }
+    }
+
 }
