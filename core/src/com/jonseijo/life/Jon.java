@@ -1,9 +1,13 @@
 package com.jonseijo.life;
 
+import android.app.ActionBar;
+
 public class Jon {
 
-    public Jon() {
+    private Tablero temporal;
 
+    public Jon(int tam) {
+        this.temporal = new Tablero(tam);
     }
 
     /*

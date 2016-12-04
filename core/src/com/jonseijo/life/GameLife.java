@@ -17,6 +17,7 @@ public class GameLife extends ApplicationAdapter {
 
     private Jon jon;
     private Tablero tablero;
+    private Tablero temporal;
 
     private SpriteBatch batch;
     private Viewport viewport;
@@ -25,8 +26,8 @@ public class GameLife extends ApplicationAdapter {
 	@Override
 	public void create () {
 	    this.assetLoader = new AssetLoader();
-	    this.jon = new Jon();
-	    this.tablero = new Tablero(25);
+
+        this.crearTablero(25);
 
 	    this.tablero.set(0, 0, true);
 	    this.tablero.set(1, 1, true);
@@ -44,6 +45,11 @@ public class GameLife extends ApplicationAdapter {
 
         Gdx.input.setInputProcessor(new GameInputAdapter(this));
 	}
+
+	public void crearTablero(int tam) {
+        this.jon = new Jon(tam);
+        this.tablero = new Tablero(tam);
+    }
 
 	@Override
 	public void render () {
