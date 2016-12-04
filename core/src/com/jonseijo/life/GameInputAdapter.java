@@ -12,6 +12,7 @@ public class GameInputAdapter extends InputAdapter{
 
     @Override
     public boolean touchDown (int x, int y, int pointer, int button) {
+        game.siguienteGeneracion();
         return true;
     }
 

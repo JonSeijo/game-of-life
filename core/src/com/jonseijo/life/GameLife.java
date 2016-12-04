@@ -15,6 +15,7 @@ public class GameLife extends ApplicationAdapter {
 
     private AssetLoader assetLoader;
 
+    private Jon jon;
     private Tablero tablero;
 
     private SpriteBatch batch;
@@ -24,11 +25,22 @@ public class GameLife extends ApplicationAdapter {
 	@Override
 	public void create () {
 	    this.assetLoader = new AssetLoader();
+	    this.jon = new Jon();
 	    this.tablero = new Tablero(25);
+
+	    this.tablero.set(0, 0, true);
+	    this.tablero.set(1, 1, true);
+	    this.tablero.set(2, 2   , true);
 
         this.batch = new SpriteBatch();
         this.camera = new OrthographicCamera();
-        this.viewport = new ExtendViewport(200, 300, this.camera);
+
+
+        // @JONNO
+        // viewport y la camara estan siendo seteados por valores arbitrarios,
+        // Deberia crear unidades del juego para ser consistente y no usar valores magicos
+        this.viewport = new ExtendViewport(400, 600, this.camera);
+        this.camera.position.set(200, 300, 0);
 
         Gdx.input.setInputProcessor(new GameInputAdapter(this));
 	}
@@ -48,6 +60,11 @@ public class GameLife extends ApplicationAdapter {
 
 		batch.end();
 	}
+
+	public void siguienteGeneracion() {
+        // Jon es quien se encarga de aplicar las reglas de la vida al tablero
+        this.jon.simular(this.tablero);
+    }
 
     @Override
     public void resize(int width, int height) {
