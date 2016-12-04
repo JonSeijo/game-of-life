@@ -23,7 +23,9 @@ public class GameLife extends ApplicationAdapter {
 	    this.texture = new Texture(Gdx.files.internal("cell_blue.png"));
         this.batch = new SpriteBatch();
         this.camera = new OrthographicCamera();
-        this.viewport = new ExtendViewport(300, 500, this.camera);
+        this.viewport = new ExtendViewport(200, 300, this.camera);
+
+        Gdx.input.setInputProcessor(new GameInputAdapter(this));
 	}
 
 	@Override
@@ -37,7 +39,7 @@ public class GameLife extends ApplicationAdapter {
 
 		batch.begin();
 
-		batch.draw(texture, 100, 100);
+		batch.draw(texture, 0, 0);
 
 		batch.end();
 	}
