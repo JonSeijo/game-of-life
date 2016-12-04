@@ -16,7 +16,7 @@ public class Tablero {
     public Tablero(int tam) {
         this.tam = tam;
 
-        // Creo un tablero cuadrado lleno de Falses
+        // Creo un tablero cuadrado lleno de celulas muertas
         this.tablero = new ArrayList<ArrayList<Cell>>(this.tam);
         for (int i = 0; i < this.tam; i++) {
             ArrayList<Cell> arrayInterno = new ArrayList<Cell>(this.tam);
@@ -27,8 +27,22 @@ public class Tablero {
         }
     }
 
+    /*
+        @JONNO
+        Esto esta harcodeando pixeles, no esta muy bueno hacer eso.
+        Arreglar para que use tamaños custom, por ejemplo, celulas por pantalla o algo asi
+     */
     public void render(SpriteBatch batch) {
+        int x = 0;
+        int y = 0;
 
+        for (int i = 0; i < this.tam; i++) {
+            x = i*Cell.size;
+            for (int j = 0; j < this.tam; j++) {
+                y = j*Cell.size;
+                this.tablero.get(i).get(j).render(batch, x, y);
+            }
+        }
     }
 
     public void set(int x, int y, boolean value) {
