@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 
-public class GameInputAdapter implements GestureDetector.GestureListener, InputProcessor {
+public class GameInputAdapter implements InputProcessor {
 
     private GameLife game;
 
@@ -13,61 +13,15 @@ public class GameInputAdapter implements GestureDetector.GestureListener, InputP
         this.game = game;
     }
 
-    // Override del GestureProcessor (usa floats)
     @Override
-    public boolean touchDown (float x, float y, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean zoom(float initialDistance, float distance) {
-        if (distance > initialDistance) {
+    public boolean scrolled(int amount) {
+        if (amount > 0) {
             game.zoomIn();
         } else {
             game.zoomOut();
         }
         return true;
     }
-
-    @Override
-    public boolean tap(float x, float y, int count, int button) {
-        game.siguienteGeneracion();
-        return true;
-    }
-
-    @Override
-    public boolean longPress(float x, float y) {
-
-        return false;
-    }
-
-    @Override
-    public boolean fling(float velocityX, float velocityY, int button) {
-
-        return false;
-    }
-
-    @Override
-    public boolean pan(float x, float y, float deltaX, float deltaY) {
-
-        return false;
-    }
-
-    @Override
-    public boolean panStop(float x, float y, int pointer, int button) {
-
-        return false;
-    }
-
-    @Override
-    public boolean pinch (Vector2 initialFirstPointer, Vector2 initialSecondPointer, Vector2 firstPointer, Vector2 secondPointer){
-
-        return false;
-    }
-    @Override
-    public void pinchStop () {
-    }
-
 
     @Override
     public boolean keyDown(int keycode) {
@@ -101,11 +55,6 @@ public class GameInputAdapter implements GestureDetector.GestureListener, InputP
 
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
         return false;
     }
 }

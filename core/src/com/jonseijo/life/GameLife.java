@@ -2,6 +2,7 @@ package com.jonseijo.life;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -52,8 +53,10 @@ public class GameLife extends ApplicationAdapter {
         this.viewport = new ExtendViewport(400, 600, this.camera);
         this.camera.position.set(200, 300, 0);
 
-        //Gdx.input.setInputProcessor(new GameInputAdapter(this));
-        Gdx.input.setInputProcessor(new GestureDetector(new GameInputAdapter(this)));
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(new GameInputAdapter(this));
+        multiplexer.addProcessor(new GestureDetector(new GameGestureAdapter(this)));
+        Gdx.input.setInputProcessor(multiplexer);
 	}
 
     // @JONNO
