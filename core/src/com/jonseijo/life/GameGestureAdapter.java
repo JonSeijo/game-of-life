@@ -1,11 +1,13 @@
 package com.jonseijo.life;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 
 public class GameGestureAdapter implements GestureDetector.GestureListener{
 
     private GameLife game;
+    private float lastDistance;
 
     public GameGestureAdapter(GameLife game) {
         this.game = game;
@@ -18,11 +20,18 @@ public class GameGestureAdapter implements GestureDetector.GestureListener{
 
     @Override
     public boolean zoom(float initialDistance, float distance) {
-        if (distance > initialDistance) {
-            game.zoomOut();
-        } else {
-            game.zoomIn();
+        // game.zoom(initialDistance, distance);
+        if (this.lastDistance == 0) {
+            this.lastDistance = initialDistance;
         }
+
+        if (distance > this.lastDistance) {
+            game.zoomIn();
+        } else {
+            game.zoomOut();
+        }
+
+        this.lastDistance = distance;
         return true;
     }
 
