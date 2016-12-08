@@ -1,9 +1,6 @@
 package com.jonseijo.life;
 
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.input.GestureDetector;
-import com.badlogic.gdx.math.Vector2;
 
 public class GameInputAdapter implements InputProcessor {
 

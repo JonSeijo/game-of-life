@@ -15,6 +15,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameLife extends ApplicationAdapter {
 
+    public static final float SENSIBILIDAD_PAN_X = 0.9f;
+    public static final float SENSIBILIDAD_PAN_Y = 0.9f;
+
     private AssetLoader assetLoader;
 
     private Jon jon;
@@ -54,8 +57,8 @@ public class GameLife extends ApplicationAdapter {
         this.camera.position.set(200, 300, 0);
 
         InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(new GameInputAdapter(this));
         multiplexer.addProcessor(new GestureDetector(new GameGestureAdapter(this)));
+        multiplexer.addProcessor(new GameInputAdapter(this));
         Gdx.input.setInputProcessor(multiplexer);
 	}
 
@@ -93,6 +96,12 @@ public class GameLife extends ApplicationAdapter {
 
     public void zoomOut() {
         this.camera.zoom -= 0.04f;
+    }
+
+    public void pan(float x, float y, float deltaX, float deltaY) {
+        camera.position.add(
+                -deltaX * camera.zoom * this.SENSIBILIDAD_PAN_X,
+                deltaY * camera.zoom * this.SENSIBILIDAD_PAN_Y, 0);
     }
 
     @Override

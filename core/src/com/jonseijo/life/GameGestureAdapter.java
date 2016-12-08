@@ -19,9 +19,9 @@ public class GameGestureAdapter implements GestureDetector.GestureListener{
     @Override
     public boolean zoom(float initialDistance, float distance) {
         if (distance > initialDistance) {
-            game.zoomIn();
-        } else {
             game.zoomOut();
+        } else {
+            game.zoomIn();
         }
         return true;
     }
@@ -34,19 +34,17 @@ public class GameGestureAdapter implements GestureDetector.GestureListener{
 
     @Override
     public boolean longPress(float x, float y) {
-
         return false;
     }
 
     @Override
     public boolean fling(float velocityX, float velocityY, int button) {
-
         return false;
     }
 
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
-
+        game.pan(x, y, deltaX, deltaY);
         return false;
     }
 
