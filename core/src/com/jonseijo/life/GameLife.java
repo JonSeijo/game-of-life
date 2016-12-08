@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -51,7 +52,8 @@ public class GameLife extends ApplicationAdapter {
         this.viewport = new ExtendViewport(400, 600, this.camera);
         this.camera.position.set(200, 300, 0);
 
-        Gdx.input.setInputProcessor(new GameInputAdapter(this));
+        //Gdx.input.setInputProcessor(new GameInputAdapter(this));
+        Gdx.input.setInputProcessor(new GestureDetector(new GameInputAdapter(this)));
 	}
 
     // @JONNO
@@ -80,6 +82,14 @@ public class GameLife extends ApplicationAdapter {
 	public void siguienteGeneracion() {
         // Jon es quien se encarga de aplicar las reglas de la vida al tablero
         this.jon.simular(this.tablero);
+    }
+
+    public void zoomIn() {
+	    this.camera.zoom += 0.04f;
+    }
+
+    public void zoomOut() {
+        this.camera.zoom -= 0.04f;
     }
 
     @Override
