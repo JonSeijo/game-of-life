@@ -91,12 +91,16 @@ public class GameLife extends ApplicationAdapter {
     }
 
     public void zoomIn() {
-	    this.camera.zoom += 0.04f;
+        if (this.camera.zoom < 10) {
+            this.camera.zoom += 0.04f;
+        }
     }
 
     public void zoomOut() {
-        this.camera.zoom -= 0.04f;
-    }
+        if (this.camera.zoom > 0.5f) {
+            this.camera.zoom -= 0.04f;
+        }
+	}
 
     public void pan(float x, float y, float deltaX, float deltaY) {
         camera.position.add(

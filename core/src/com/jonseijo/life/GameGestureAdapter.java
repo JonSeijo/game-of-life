@@ -26,9 +26,9 @@ public class GameGestureAdapter implements GestureDetector.GestureListener{
         }
 
         if (distance > this.lastDistance) {
-            game.zoomIn();
-        } else {
             game.zoomOut();
+        } else {
+            game.zoomIn();
         }
 
         this.lastDistance = distance;
